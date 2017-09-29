@@ -6,6 +6,7 @@ from vtk import*
 sphereSource =vtkSphereSource();
 sphereSource.SetCenter(0.0, 0.0, 0.0);
 sphereSource.SetRadius(10);
+#sphereSource.SetColor(0,0,255);
 sphereSource.Update();
  
 #Create a mapper and actor
