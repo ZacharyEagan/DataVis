@@ -4,6 +4,8 @@
 import vtk
 
 filename = "file_pdb/cafeine.pdb" #file path for input 
+#found a nice example code that used cafeine so I grabbed the molecule
+#seemed like a fiting test considering this will take all night
 
 
 #Declare objects
@@ -22,14 +24,25 @@ mapp = vtk.vtkPolyDataMapper()
 
 
 # Setup FileIO
-pdbReader.SetFileName(filename); 
-renWin.
+pdbReader.SetFileName(filename); #not using just yet but important
+#to keep arround considering difficulty of finding docs.
+#this reads in a pdb file. Doesn't throw error though not tested for
+#actually giving anything useful
+ 
+sphereMap = vtk.vtkPolyDataMapper() #still not sure what it does
+sphereMap.SetInputConnection(sphere.GetOutputPort()) #handle to sphere?
+sphereActor = vtk.vtkActor() #ok so this is just a prerender pipeline?
+sphereActor.SetMapper(sphereMap)
 
 
 
+renWin.AddRenderer(ren) #ok so on high level makes sense this puts
+#the graphics into the os allocated window
+iren.SetRenderWindow(renWin) #and assignes the callback handles
+
+ren.AddActor(sphereActor) #and put in the sphere
 
 
-iren.SetRenderWindow(renWin)
 # Enable user interface interactor
 iren.Initialize()
 renWin.Render()
