@@ -21,6 +21,10 @@ pdbReader = vtk.vtkPDBReader()
 #the examples also all use this thing. no idea what it is but it
 #seems to convert from shape primitives to somthing displayable
 mapp = vtk.vtkPolyDataMapper()
+mapp.SetInputConnection(pdbReader.GetOutputPort())
+pdbActor = vtk.vtkActor()
+pdbActor.SetMapper(mapp)
+ren.AddActor(pdbActor)
 
 
 # Setup FileIO
@@ -33,7 +37,7 @@ sphereMap = vtk.vtkPolyDataMapper() #still not sure what it does
 sphereMap.SetInputConnection(sphere.GetOutputPort()) #handle to sphere?
 sphereActor = vtk.vtkActor() #ok so this is just a prerender pipeline?
 sphereActor.SetMapper(sphereMap)
-
+sphereActor.GetProperty().SetColor(0,0,255)
 
 
 renWin.AddRenderer(ren) #ok so on high level makes sense this puts
