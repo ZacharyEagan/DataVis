@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 #also sorry for the nonpythony format I'm mostly a C/C++ developer
-
+import numpy as np
 import vtk
+from vtk.util import numpy_support
 
 #filename = "files_pdb/cafeine.pdb" #file path for input 
 filename = "files_pdb/test2.pdb" #file path for input 
@@ -42,10 +43,54 @@ pdbReader.SetFileName(filename); #not using just yet but important
 #sphereActor.SetMapper(sphereMap)
 #sphereActor.GetProperty().SetColor(0,0,255)
 
+#table = vtk.vtkTable()
+#arrx = vtk.vtkFloatArray()
+#arrx.SetName("X Axis")
+#table.AddColumn(arrx)
+#arrc = vtk.vtkFloatArray()
+#arrc.SetName("Cos")
+#table.AddColumn(arrc)
+#table.SetValue(0,0,0)
+#table.SetValue(0,1,1)
+
+#view = vtk.vtkContextView()
+#chart = vtk.vtkChartXY()
+#chart.SetRenderEmpty(True)
 
 
 
+#view.GetScene().AddItem(chart)
+#line = chart.AddPlot(0)
+#line.SetInputData(table, 0, 1)
+#line.SetColor(0,255,0)
+#line.SetWidth(1.0)
+#view.GetInteractor().Initialize()
+#view.GetInteractor().Start()
 
+#here's the data generation
+#table = vtk.vtkTable()
+#data = np.random.random((3,2))
+#data2 = numpy_support.numpy_to_vtk(data, deep=0, array_type=None)
+#table.GetRowData().AddArray(data2)
+
+#attempting to add a plot
+#chart = vtk.vtkChartPie()
+#pie = vtk.vtkPlotPie()
+#pie.
+#chart.AddPlot(pie)
+
+
+#ren.AddActor(chart)
+#gView = vtk.vtkContextView()
+#gView.GetScene().AddItem(chart)
+#gView.GetRenderWindow().SetMultiSamples(0)
+#pie.Paint(gView)
+
+#gView.AddRepresentationFromInput(pie) #NOPE
+#gView.Render()
+
+
+#ren.AddActor(pie) Nope not this way
 renWin.AddRenderer(ren) #ok so on high level makes sense this puts
 #the graphics into the os allocated window
 iren.SetRenderWindow(renWin) #and assignes the callback handles
