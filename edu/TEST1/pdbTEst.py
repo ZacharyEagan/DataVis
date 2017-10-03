@@ -2,6 +2,7 @@
 #also sorry for the nonpythony format I'm mostly a C/C++ developer
 import numpy as np
 import vtk
+import math
 from vtk.util import numpy_support
 
 #filename = "files_pdb/cafeine.pdb" #file path for input 
@@ -33,6 +34,8 @@ ren.AddActor(pdbActor) #
 
 # Setup FileIO
 pdbReader.SetFileName(filename); #not using just yet but important
+
+
 #to keep arround considering difficulty of finding docs.
 #this reads in a pdb file. Doesn't throw error though not tested for
 #actually giving anything useful
@@ -56,6 +59,71 @@ pdbReader.SetFileName(filename); #not using just yet but important
 #view = vtk.vtkContextView()
 #chart = vtk.vtkChartXY()
 #chart.SetRenderEmpty(True)
+
+
+view = vtk.vtkContextView()
+view.GetRenderer().SetBackground(1.0,1.0,1.0)
+view.GetRenderWindow().SetSize(400,300)
+
+chart = vtk.vtkChartPie()
+view.GetScene().AddItem(chart)
+chart.SetShowLegend(True)
+
+table = vtk.vtkTable()
+#data = np.random.random((1,3))
+#data2 = numpy_support.numpy_to_vtk(data)
+#table.GetRowData().AddArray(data2)
+
+######
+
+arrC = vtk.vtkFloatArray()
+arrC.SetName('Cosine')
+
+arrS = vtk.vtkFloatArray()
+arrS.SetName('Sine')
+
+
+table.AddColumn(arrC)
+table.AddColumn(arrS)
+
+numPoints = 4
+
+inc = 7.5/(numPoints-1)
+table.SetNumberOfRows(numPoints)
+for i in range(numPoints):
+    table.SetValue(i, 0, i*inc)
+    table.SetValue(i, 1, math.cos(i*inc))
+    table.SetValue(i, 2, math.sin(i*inc))
+    table.SetValue(i, 3, math.sin(i*inc)-math.cos(i*inc))
+
+points = chart.AddPlot(vtk.vtkChart.POINTS)
+points.SetInput(table, 0, 1)
+#points.SetInput(data2, 0, 1)
+
+
+
+view.GetRenderWindow().SetMultiSamples(0)
+view.GetInteractor().Initialize()
+#view.GetInteractor().Start()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -89,6 +157,8 @@ pdbReader.SetFileName(filename); #not using just yet but important
 #gView.AddRepresentationFromInput(pie) #NOPE
 #gView.Render()
 
+
+print(pdbReader.GetNumberOfAtoms())
 
 #ren.AddActor(pie) Nope not this way
 renWin.AddRenderer(ren) #ok so on high level makes sense this puts
