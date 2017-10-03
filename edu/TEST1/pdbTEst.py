@@ -3,7 +3,8 @@
 
 import vtk
 
-filename = "files_pdb/cafeine.pdb" #file path for input 
+#filename = "files_pdb/cafeine.pdb" #file path for input 
+filename = "files_pdb/test2.pdb" #file path for input 
 #found a nice example code that used cafeine so I grabbed the molecule
 #seemed like a fiting test considering this will take all night
 
@@ -20,12 +21,14 @@ sphere = vtk.vtkSphereSource() #sphere to test window with
 pdbReader = vtk.vtkPDBReader() 
 #the examples also all use this thing. no idea what it is but it
 #seems to convert from shape primitives to somthing displayable
-mapp = vtk.vtkPolyDataMapper()
-mapp.SetInputConnection(pdbReader.GetOutputPort())
-pdbActor = vtk.vtkActor()
-pdbActor.SetMapper(mapp)
-ren.AddActor(pdbActor)
 
+#pipeline applied to the pdb molecule
+mapp = vtk.vtkPolyDataMapper() # 
+mapp.SetInputConnection(pdbReader.GetOutputPort()) #
+pdbActor = vtk.vtkActor() #
+pdbActor.SetMapper(mapp) #
+ren.AddActor(pdbActor) #
+#Dang Actually worked!
 
 # Setup FileIO
 pdbReader.SetFileName(filename); #not using just yet but important
@@ -33,18 +36,21 @@ pdbReader.SetFileName(filename); #not using just yet but important
 #this reads in a pdb file. Doesn't throw error though not tested for
 #actually giving anything useful
  
-sphereMap = vtk.vtkPolyDataMapper() #still not sure what it does
-sphereMap.SetInputConnection(sphere.GetOutputPort()) #handle to sphere?
-sphereActor = vtk.vtkActor() #ok so this is just a prerender pipeline?
-sphereActor.SetMapper(sphereMap)
-sphereActor.GetProperty().SetColor(0,0,255)
+#sphereMap = vtk.vtkPolyDataMapper() #still not sure what it does
+#sphereMap.SetInputConnection(sphere.GetOutputPort()) #handle to sphere?
+#sphereActor = vtk.vtkActor() #ok so this is just a prerender pipeline?
+#sphereActor.SetMapper(sphereMap)
+#sphereActor.GetProperty().SetColor(0,0,255)
+
+
+
 
 
 renWin.AddRenderer(ren) #ok so on high level makes sense this puts
 #the graphics into the os allocated window
 iren.SetRenderWindow(renWin) #and assignes the callback handles
 
-ren.AddActor(sphereActor) #and put in the sphere
+#ren.AddActor(sphereActor) #and put in the sphere
 
 
 # Enable user interface interactor
