@@ -3,7 +3,7 @@
 
 import vtk
 
-filename = "file_pdb/cafeine.pdb" #file path for input 
+filename = "files_pdb/cafeine.pdb" #file path for input 
 #found a nice example code that used cafeine so I grabbed the molecule
 #seemed like a fiting test considering this will take all night
 
