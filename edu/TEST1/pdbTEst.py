@@ -28,6 +28,8 @@ pdbReader = vtk.vtkPDBReader()
 mapp = vtk.vtkPolyDataMapper() # 
 mapp.SetInputConnection(pdbReader.GetOutputPort()) #
 pdbActor = vtk.vtkActor() #
+pdbProp = pdbActor.GetProperty()
+print (pdbProp)
 pdbActor.SetMapper(mapp) #
 ren.AddActor(pdbActor) #
 #Dang Actually worked!
