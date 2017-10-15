@@ -105,7 +105,8 @@ points.SetInput(table, 0, 1)
 
 
 view.GetRenderWindow().SetMultiSamples(0)
-view.GetInteractor().Initialize()
+
+#view.GetInteractor().Initialize()
 #view.GetInteractor().Start()
 
 
@@ -162,10 +163,20 @@ view.GetInteractor().Initialize()
 
 print(pdbReader.GetNumberOfAtoms())
 
-#ren.AddActor(pie) Nope not this way
+
+
 renWin.AddRenderer(ren) #ok so on high level makes sense this puts
+ren.SetViewport(0, 0.0,0.5, 1.0);
+#ren.AddActor(pie) Nope not this way
+pieRenderer = view.GetRenderer()
+renWin.AddRenderer(pieRenderer)
+pieRenderer.SetViewport(0.5,0,1.0,1.0)
+
+ren.ResetCamera()
 #the graphics into the os allocated window
 iren.SetRenderWindow(renWin) #and assignes the callback handles
+
+
 
 #ren.AddActor(sphereActor) #and put in the sphere
 
