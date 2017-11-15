@@ -22,12 +22,20 @@ points.InsertNextPoint(1.0,1.0,1.0) #7 XYZ
 
 
 cells = vtk.vtkCellArray()
-cells.InsertNextCell(4, [0, 4, 6, 2])
-cells.InsertNextCell(4, [0, 2, 3, 1])
-cells.InsertNextCell(4, [0, 1, 5, 4])
-cells.InsertNextCell(4, [2, 6, 7, 3])
-cells.InsertNextCell(4, [4, 5, 7, 6])
-cells.InsertNextCell(4, [5, 1, 3, 7])
+cells.InsertNextCell(1, [0,])
+cells.InsertNextCell(1, [1,])
+cells.InsertNextCell(1, [2,])
+cells.InsertNextCell(1, [3,])
+cells.InsertNextCell(1, [4,])
+cells.InsertNextCell(1, [5,])
+cells.InsertNextCell(1, [6,])
+cells.InsertNextCell(1, [7,])
+#cells.InsertNextCell(4, [0, 4, 6, 2])
+#cells.InsertNextCell(4, [0, 2, 3, 1])
+#cells.InsertNextCell(4, [0, 1, 5, 4])
+#cells.InsertNextCell(4, [2, 6, 7, 3])
+#cells.InsertNextCell(4, [4, 5, 7, 6])
+#cells.InsertNextCell(4, [5, 1, 3, 7])
 
 scalars = vtk.vtkFloatArray()
 for i in range (8):
@@ -36,12 +44,12 @@ for i in range (8):
 
 cube = vtk.vtkPolyData()
 cube.SetPoints(points)
-cube.SetPolys(cells)
+#cube.SetPolys(cells)
 cube.GetPointData().SetScalars(scalars)
 
 
 
-#cube.SetVerts(cells)
+cube.SetVerts(cells)
 #cube.SetLines(cells)
 
 

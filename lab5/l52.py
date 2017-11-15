@@ -64,6 +64,10 @@ mapperVolume = vtk.vtkVolumeRayCastMapper()
 mapperVolume = vtk.vtkSmartVolumeMapper()
 #mapperVolume.SetVolumeRayCastFunction(funcRayCast)
 
+
+print type(imdataBrainSeg)
+print imdataBrainSeg
+
 mapperVolume.SetInputData(imdataBrainSeg)
 
 actorVolume = vtk.vtkVolume()
