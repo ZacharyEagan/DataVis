@@ -22,7 +22,36 @@ with  open("iris.csv", "r") as iris_file:
          petal_length.append(float(data[2]))
          petal_width.append(float(data[3]))
          iris_species.append(data[4])
+
+width_sum = 0;
+for petal in petal_width:
+   width_sum += petal;
+width_av = width_sum / len(petal_width)
+
+petal_dict = {}
+for iris in iris_species:
+   petal_dict[iris] = petal_dict.get(iris,0) + 1
+print (petal_dict)
+   
+
+scale = 0.1
+
 for i in range(len(iris_species)):
-   bpy.ops.mesh.primitive_uv_sphere_add(location=(sepal_length[i], sepal_width[i], petal_length[i]))
+   if iris_species[i] == list(petal_dict.keys())[0 % len(petal_dict)]:
+      bpy.ops.mesh.primitive_uv_sphere_add(location=(sepal_length[i], sepal_width[i], petal_length[i]))
+   if iris_species[i] == list(petal_dict.keys())[1 % len(petal_dict)]:
+      bpy.ops.mesh.primitive_cube_add(location=(sepal_length[i], sepal_width[i], petal_length[i]))
+   if iris_species[i] == list(petal_dict.keys())[2 % len(petal_dict)]:
+      bpy.ops.mesh.primitive_cone_add(location=(sepal_length[i], sepal_width[i], petal_length[i]))
+   if iris_species[i] == list(petal_dict.keys())[3 % len(petal_dict)]:
+      bpy.ops.mesh.primitive_torus_add(location=(sepal_length[i], sepal_width[i], petal_length[i]))
+
+   bpy.ops.transform.resize(value=(scale * petal_width[i] / width_av,)*3)
    bpy.context.object.name = iris_species[i] + "-at_row-" + str(i)
 
+      
+
+
+
+
+   
