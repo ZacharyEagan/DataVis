@@ -34,7 +34,7 @@ for iris in iris_species:
 print (petal_dict)
    
 
-scale = 0.05
+scale = 0.01
 
 for i in range(len(iris_species)):
    if iris_species[i] == list(petal_dict.keys())[0 % len(petal_dict)]:
@@ -46,13 +46,13 @@ for i in range(len(iris_species)):
    if iris_species[i] == list(petal_dict.keys())[3 % len(petal_dict)]:
       bpy.ops.mesh.primitive_torus_add(location=(sepal_length[i], sepal_width[i], petal_length[i]))
 
-   #print("math")
-   #print (petal_width[i] / width_av)
-   #print ("width")
-   #print (width_av)
-   #print ("thiswidth")
-   #print(petal_width[i])
-   bpy.ops.transform.resize(value=( scale * (petal_width[i] **0.5) / (width_av **0.5),)*3)
+   print("math")
+   print (petal_width[i] / width_av)
+   print ("width")
+   print (width_av)
+   print ("thiswidth")
+   print(petal_width[i])
+   bpy.ops.transform.resize(value=(petal_width[i]**0.5*scale,)*3)
    bpy.context.object.name = iris_species[i] + "-at_row-" + str(i)
 
       
