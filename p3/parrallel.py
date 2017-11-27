@@ -3,12 +3,13 @@ import vtk
 reader = vtk.vtkDelimitedTextReader()
 reader.DetectNumericColumnsOn()
 reader.SetFieldDelimiterCharacters(",")
-#reader.SetHaveHeaders(True)
-reader.SetHaveHeaders(False)
-reader.SetMaxRecords(100)
+reader.SetHaveHeaders(True)
+#reader.SetHaveHeaders(False)
+reader.SetMaxRecords(400)
+#print reader.GetHeaders()
 reader.SetFileName("iris.csv")
 reader.Update()
-#table = reader.GetOutput()
+
 rep = vtk.vtkParallelCoordinatesRepresentation()
 rep.SetInputConnection(reader.GetOutputPort())
 
