@@ -5,10 +5,10 @@ reader.DetectNumericColumnsOn()
 reader.SetFieldDelimiterCharacters(",")
 reader.SetHaveHeaders(True)
 #reader.SetHaveHeaders(False)
-reader.SetMaxRecords(20)
+reader.SetMaxRecords(300)
 #print reader.GetHeaders()
-#reader.SetFileName("iris.csv")
-reader.SetFileName("postscndryunivsrvy2013dirinfo.csv")
+reader.SetFileName("iris.csv")
+#reader.SetFileName("postscndryunivsrvy2013dirinfo.csv")
 reader.Update()
 
 print "data read"
