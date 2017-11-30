@@ -9,43 +9,23 @@ iris = datasets.load_iris()
 #print type(iris)
 
 
-df = pd.read_csv(filepath_or_buffer="data/banklist.csv", header=None, sep=",")
+#df = pd.read_csv(filepath_or_buffer="iris_no_headers.csv", header=None, sep=",")
+#df = pd.read_csv(filepath_or_buffer="iris_no_headers.csv", header=None, sep=",")
+#df = pd.read_csv(filepath_or_buffer="iris_no_headers.csv", header=None, sep=",")
+df = pd.read_csv(filepath_or_buffer="data/Libraries_Annual_Statistics_Comparison_2010-2011_NH.csv", header=None, sep=",")
 #=['sepal_len','sepal_wid', 'petal_len', 'petal_width', 'class']
 
 #X = iris.data[:, :2]
-X = df.ix[:,:6].values; 
-
-count = [0,0,0,0,0,0,0]
-dcts = [{},{},{},{},{},{},{}]
-print X[0][0]
-for i in range(6):
-   for dat in X:
-      if (dcts[i].get(dat[i],0) == 0):
-         count[i] = count[i] + 1
-      dcts[i][dat[i]] = dcts[i].get(dat[i],count[i])
-      dat[i] = dcts[i].get(dat[i])
- 
-
-
-
-
-
-
-
-
+X = df.ix[:,3:4].values
+print shape(X)
+#X.extend(df.ix[:,6:].values)
+X = [df.ix[:,3].values, df.ix[:,4].values, df.ix[:,6].values, df.ix[:,7].values] 
 y = iris.target
-#dct = {'Iris-setosa':0, 'Iris-versicolor':1, 'Iris-virginica':2}
-dct = {}
-count = 0
-for dat in df.ix[:,4].values:
-   if (dct.get(dat, 0) == 0):
-      count = count + 1
-   dct[dat] = dct.get(dat, count)
-
+dct = {'Oahu':0, 'Hawaii':1, 'Kauai':2, 'Maui':3}
 print y
 
 y =[]
-for pnt in df.ix[:,4].values:
+for pnt in df.ix[:,0].values:
    y.append(dct[pnt])
 
 print X

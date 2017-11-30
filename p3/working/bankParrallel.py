@@ -1,7 +1,6 @@
 import vtk
 
 reader = vtk.vtkDelimitedTextReader()
-#reader = vtk.vtkCSVTextReader()
 reader.DetectNumericColumnsOn()
 reader.SetFieldDelimiterCharacters(",")
 reader.SetHaveHeaders(True)
@@ -9,10 +8,8 @@ reader.SetHaveHeaders(True)
 reader.SetMaxRecords(300)
 #print reader.GetHeaders()
 #reader.SetFileName("iris.csv")
-#reader.SetFileName("data/banklist.csv")
+reader.SetFileName("data/banklist.csv")
 #reader.SetFileName("data/bikepghmembers.csv")
-#reader.SetFileName("data/2012_SAT_Results.csv")
-reader.SetFileName("data/Libraries_Annual_Statistics_Comparison_2010-2011.csv")
 #reader.SetFileName("postscndryunivsrvy2013dirinfo.csv")
 reader.Update()
 
@@ -41,7 +38,6 @@ for i in range(57):
 
 
 chart = vtk.vtkChartParallelCoordinates()
-chart.GetPlot(0).SetInputData(reader.GetOutput())
 view.GetScene().AddItem(chart)
 chart.GetPlot(0).SetLookupTable(table)
 #chart.GetPlot(0).SetLookupTable(table)
@@ -51,11 +47,11 @@ chart.GetPlot(0).SetScalarVisibility(1)
 
 
 
-chart.SetColumnVisibility("School Name", False)
+chart.SetColumnVisibility("City", False)
 chart.SetColumnVisibility("Purchaser", False)
 chart.SetColumnVisibility("Purchased", False)
 #chart.SetRowVisibility(0, False)
-
+chart.GetPlot(0).SetInputData(reader.GetOutput())
 view.ResetCamera()
 view.Render()
 

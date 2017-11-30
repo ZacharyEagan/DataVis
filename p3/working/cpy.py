@@ -9,39 +9,17 @@ iris = datasets.load_iris()
 #print type(iris)
 
 
-df = pd.read_csv(filepath_or_buffer="data/banklist.csv", header=None, sep=",")
+#df = pd.read_csv(filepath_or_buffer="iris_no_headers.csv", header=None, sep=",")
+#df = pd.read_csv(filepath_or_buffer="iris_no_headers.csv", header=None, sep=",")
+#df = pd.read_csv(filepath_or_buffer="iris_no_headers.csv", header=None, sep=",")
+df = pd.read_csv(filepath_or_buffer="data/Libraries_Annual_Statistics_Comparison_2010-2011.csv", header=None, sep=",")
 #=['sepal_len','sepal_wid', 'petal_len', 'petal_width', 'class']
 
 #X = iris.data[:, :2]
-X = df.ix[:,:6].values; 
-
-count = [0,0,0,0,0,0,0]
-dcts = [{},{},{},{},{},{},{}]
-print X[0][0]
-for i in range(6):
-   for dat in X:
-      if (dcts[i].get(dat[i],0) == 0):
-         count[i] = count[i] + 1
-      dcts[i][dat[i]] = dcts[i].get(dat[i],count[i])
-      dat[i] = dcts[i].get(dat[i])
- 
-
-
-
-
-
-
-
+X = df.ix[:,0:3].values; 
 
 y = iris.target
-#dct = {'Iris-setosa':0, 'Iris-versicolor':1, 'Iris-virginica':2}
-dct = {}
-count = 0
-for dat in df.ix[:,4].values:
-   if (dct.get(dat, 0) == 0):
-      count = count + 1
-   dct[dat] = dct.get(dat, count)
-
+dct = {'Iris-setosa':0, 'Iris-versicolor':1, 'Iris-virginica':2}
 print y
 
 y =[]
